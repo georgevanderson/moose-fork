@@ -1,12 +1,11 @@
 "use server";
 import { createClient } from "@clickhouse/client";
-import { column } from "@observablehq/plot";
 
 const clickhouseClient = createClient({
-  host: "http://localhost:18123",
-  username: "panda",
-  password: "pandapass",
-  database: "local",
+  host: process.env.HOST || "http://localhost:23",
+  username: process.env.DB_USER || "panda",
+  password: process.env.DB_PASS || "pandapass",
+  database: process.env.DB || "local",
 });
 
 export const getData = async (query: string): Promise<object[]> => {
