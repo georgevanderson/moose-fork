@@ -1,5 +1,5 @@
 1. Deploy Template
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F514-labs%2Fmoose%2Ftree%2Fmain%2Ftemplates%2Fmixplank%2Fnext&env=HOST,DB_USER,DB_PASS,DB)
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fgeorgevanderson%2Fmoose-fork%2Ftree%2Fmain%2Ftemplates%2Fmixplank%2Fnext&env=HOST,DB_USER,DB_PASS,DB)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
