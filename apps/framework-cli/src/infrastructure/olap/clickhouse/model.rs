@@ -5,6 +5,7 @@ use crate::infrastructure::olap::clickhouse::queries::ClickhouseEngine;
 
 use chrono::{DateTime, FixedOffset};
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use std::fmt::{self};
 
 #[derive(Debug, Clone)]
@@ -21,7 +22,7 @@ impl fmt::Display for ClickHouseTableType {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub enum ClickHouseColumnType {
     String,
     Boolean,
@@ -41,7 +42,7 @@ impl fmt::Display for ClickHouseColumnType {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub enum ClickHouseInt {
     Int8,
     Int16,
@@ -63,7 +64,7 @@ impl fmt::Display for ClickHouseInt {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub enum ClickHouseFloat {
     Float32,
     Float64,
@@ -164,8 +165,7 @@ impl fmt::Display for ClickHouseValue {
 }
 
 pub struct ClickHouseRecord {
-    pub columns: Vec<String>,
-    pub values: Vec<ClickHouseValue>,
+    values: HashMap<String, ClickHouseValue>,
 }
 
 impl Default for ClickHouseRecord {
@@ -177,14 +177,16 @@ impl Default for ClickHouseRecord {
 impl ClickHouseRecord {
     pub fn new() -> ClickHouseRecord {
         ClickHouseRecord {
-            columns: Vec::new(),
-            values: Vec::new(),
+            values: HashMap::new(),
         }
     }
 
     pub fn insert(&mut self, column: String, value: ClickHouseValue) {
-        self.columns.push(column);
-        self.values.push(value);
+        self.values.insert(column, value);
+    }
+
+    pub fn get(&self, column: &str) -> Option<&ClickHouseValue> {
+        self.values.get(column)
     }
 }
 
