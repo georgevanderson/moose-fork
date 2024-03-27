@@ -100,7 +100,11 @@ function AggregatedPropertyForm({
               </FormControl>
               <SelectContent>
                 {aggregatedProperty.map((l, i) => (
-                  <SelectItem onClick={() => setOpen(false)} value={l.val}>
+                  <SelectItem
+                    key={i}
+                    onClick={() => setOpen(false)}
+                    value={l.val}
+                  >
                     {l.label}
                   </SelectItem>
                 ))}
@@ -129,7 +133,6 @@ function OptionsSelect({
   currVal: string;
   setOpen: (val: boolean) => void;
 }) {
-  console.log("val", val);
   switch (val) {
     case MetricOptions.Total_Events:
       return (
