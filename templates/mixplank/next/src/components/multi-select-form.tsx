@@ -29,7 +29,9 @@ export default function MultiSelectForm({
   useEffect(() => {
     const subscription = watch(() =>
       handleSubmit((val) => {
-        setForm(val.list);
+        if (val.list) {
+          setForm(val.list);
+        }
       })()
     );
     return () => subscription.unsubscribe();
